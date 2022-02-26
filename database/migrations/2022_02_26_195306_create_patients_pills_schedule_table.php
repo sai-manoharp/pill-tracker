@@ -17,7 +17,7 @@ class CreatePatientsPillsScheduleTable extends Migration
             $table->id();
             $table->unsignedBigInteger('pill_id');
             $table->unsignedBigInteger('patient_id');
-            $table->enum('schedule', ['morining', 'afternoon', 'night']);
+            $table->enum('schedule', ['morning', 'afternoon', 'night']);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();            
             $table->foreign('pill_id')->references('id')->on('pills');

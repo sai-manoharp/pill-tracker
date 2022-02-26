@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\PillController;
+use App\Http\Controllers\PatientController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,3 +17,8 @@ use Illuminate\Http\Request;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+
+Route::get('/pills', [PillController::class, 'get']);
+Route::get('/patients', [PatientController::class, 'get']);
+Route::get('/patients/schedule/{schedule}', [PatientController::class, 'patientsBySchedule']);
+Route::get('/pills/{id}/patients', [PillController::class, 'patients']);
