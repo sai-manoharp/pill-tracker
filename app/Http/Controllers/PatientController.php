@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Patient;
-
+use App\Helpers\PatientDataHelper;
 class PatientController extends Controller
 {
     // Get all Patients
@@ -15,15 +15,7 @@ class PatientController extends Controller
     }
     
     // Gets patients data by schedule. Ex gets all the patients who has a pill in afternoon.
-    public function patientsBySchedule($schedule) {
-        $patients = Patient::distinct()->get();
-        foreach($patients as $key =>$patient) {
-            $pills = Patient::find($patient['id'])->pillsBySchedule($schedule)->get();
-            if (!count($pills)) {
-                unset ($patients[$key]);
-            }
-            $patient ['pills'] = $pills;
-        }
-        return $patients;
+    public function patientsBySchedule($schedule): array {        
+        return PatientDataHelper::getPatientsBySchedule($schedule);
     }
 }

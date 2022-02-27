@@ -3,6 +3,9 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use App\Helpers\PatientDataHelper;
+use App\Mail\PillReminder;
+use Illuminate\Support\Facades\Mail;
 
 class SendPillReminder extends Command
 {
@@ -11,7 +14,7 @@ class SendPillReminder extends Command
      *
      * @var string
      */
-    protected $signature = 'command:SendPillReminder {schedule}';
+    protected $signature = 'command:SendPillReminder {--schedule=}';
 
     /**
      * The console command description.
@@ -37,6 +40,9 @@ class SendPillReminder extends Command
      */
     public function handle()
     {
-        return 0;
+        $schedule = $this->option('schedule');
+        $patients = PatientDataHelper::getPatientsBySchedule($schedule);
+        Mail::send(new PillReminder());
+
     }
 }
