@@ -14,7 +14,7 @@ class Patient extends Model
     }
     public function pillsBySchedule($schedule){
         return $this->belongsToMany(Pill::class, 'patients_pills_schedule')
-                    ->withPivot('schedule')
+                    ->withPivot('schedule', 'id')
                     ->as('schedule')
                     ->wherePivot('schedule', $schedule);
     }
