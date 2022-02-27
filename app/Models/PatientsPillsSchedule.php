@@ -2,13 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class PatientsPillsSchedule extends Model
+class PatientsPillsSchedule extends Pivot
 {
     protected $table = 'patients_pills_schedule';
-    use HasFactory;
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+    
 
     public function pills() {
         return $this->belongsToMany(Pill::class);

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
@@ -12,10 +13,17 @@ class PatientController extends Controller
         $pills = Patient::find(1)->pills()->get();
         return $pills;
     }
-
+    
+    // Gets patients data by schedule. Ex gets all the patients who has a pill in afternoon.
     public function patientsBySchedule($schedule) {
-        $schedule = 'morning';
-        $patients = Patient::find(1)->pillsBySchedule($schedule)->get();
+        $patients = Patient::distinct()->get();
+        foreach($patients as $key =>$patient) {
+            $pills = Patient::find($patient['id'])->pillsBySchedule($schedule)->get();
+            if (!count($pills)) {
+                unset ($patients[$key]);
+            }
+            $patient ['pills'] = $pills;
+        }
         return $patients;
     }
 }
