@@ -9,16 +9,22 @@ use Illuminate\Queue\SerializesModels;
 
 class PillReminder extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+
+     protected $patientPillData;
+     protected $schedule;
+
+    public function __construct($patientPillData, $schedule)
     {
-        //
+        $this->patientPillData = $patientPillData;
+        $this->schedule = $schedule;
     }
 
     /**
@@ -29,6 +35,10 @@ class PillReminder extends Mailable
     public function build()
     {
         return $this->view('emails.pill.reminder')
-            ->to('manoharsai566@gmail.com');
+            ->to('manoharsai566@gmail.com')
+            ->with([
+                    'patientPillData' => $this->patientPillData,
+                    'schedule' => $this->schedule
+                ]);
     }
 }
