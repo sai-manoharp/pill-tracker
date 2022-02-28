@@ -13,9 +13,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
  */
 class Announcement extends Model
 {
-    use AnnouncementScope,
-        HasFactory,
-        LogsActivity;
+    use AnnouncementScope;
+    use HasFactory;
+    use LogsActivity;
 
     public const TYPE_FRONTEND = 'frontend';
     public const TYPE_BACKEND = 'backend';

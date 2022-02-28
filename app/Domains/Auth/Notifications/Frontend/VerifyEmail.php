@@ -32,7 +32,7 @@ class VerifyEmail extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(__('Verify E-mail Address'))
             ->line(__('Please click the button below to verify your email address.'))
             ->action(__('Verify E-mail Address'), $this->verificationUrl($notifiable))

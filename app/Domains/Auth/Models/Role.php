@@ -14,10 +14,10 @@ use Spatie\Permission\Models\Role as SpatieRole;
  */
 class Role extends SpatieRole
 {
-    use HasFactory,
-        RoleAttribute,
-        RoleMethod,
-        RoleScope;
+    use HasFactory;
+    use RoleAttribute;
+    use RoleMethod;
+    use RoleScope;
 
     /**
      * @var string[]

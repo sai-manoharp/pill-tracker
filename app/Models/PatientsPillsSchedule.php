@@ -14,9 +14,10 @@ class PatientsPillsSchedule extends Pivot
      * @var bool
      */
     public $incrementing = true;
-    
 
-    public function pills() {
+
+    public function pills()
+    {
         return $this->belongsToMany(Pill::class);
     }
 }

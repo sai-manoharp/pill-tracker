@@ -9,7 +9,8 @@ class Pill extends Model
 {
     use HasFactory;
 
-    public function patients() {
+    public function patients()
+    {
         return $this->belongsToMany(Patient::class, 'patients_pills_schedule')
                     ->withPivot('schedule')
                     ->as('schedule');
