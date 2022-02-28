@@ -26,18 +26,18 @@ use Spatie\Permission\Traits\HasRoles;
  */
 class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenticatable
 {
-    use HasApiTokens,
-        HasFactory,
-        HasRoles,
-        Impersonate,
-        MustVerifyEmailTrait,
-        Notifiable,
-        SoftDeletes,
-        TwoFactorAuthentication,
-        UserAttribute,
-        UserMethod,
-        UserRelationship,
-        UserScope;
+    use HasApiTokens;
+    use HasFactory;
+    use HasRoles;
+    use Impersonate;
+    use MustVerifyEmailTrait;
+    use Notifiable;
+    use SoftDeletes;
+    use TwoFactorAuthentication;
+    use UserAttribute;
+    use UserMethod;
+    use UserRelationship;
+    use UserScope;
 
     public const TYPE_ADMIN = 'admin';
     public const TYPE_USER = 'user';
@@ -125,7 +125,7 @@ class User extends Authenticatable implements MustVerifyEmail, TwoFactorAuthenti
      */
     public function sendEmailVerificationNotification(): void
     {
-        $this->notify(new VerifyEmail);
+        $this->notify(new VerifyEmail());
     }
 
     /**

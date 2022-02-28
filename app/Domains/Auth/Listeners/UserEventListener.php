@@ -115,7 +115,7 @@ class UserEventListener
     {
         activity('user')
             ->performedOn($event->user)
-            ->log(':causer.name '.($event->status === 0 ? 'deactivated' : 'reactivated').' user :subject.name');
+            ->log(':causer.name ' . ($event->status === 0 ? 'deactivated' : 'reactivated') . ' user :subject.name');
     }
 
     /**
