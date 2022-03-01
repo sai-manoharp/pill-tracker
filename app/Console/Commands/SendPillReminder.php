@@ -43,7 +43,10 @@ class SendPillReminder extends Command
         $schedule = $this->option('schedule');
         $patients = PatientDataHelper::getPatientsBySchedule($schedule);
         foreach ($patients as $patient) {
+            // Email channel
             Mail::send(new PillReminder($patient, $schedule));
+            // Whatsapp Channel
+            
         }
     }
 }
