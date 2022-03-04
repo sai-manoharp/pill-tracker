@@ -7,13 +7,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Patient;
 use App\Helpers\PatientDataHelper;
+use Illuminate\Support\Collection;
 
 class PatientController extends Controller
 {
     // Get all Patients
-    public function get()
+    public function get(): Collection
     {
-        $pills = Patient::find(1)->pills()->get();
+        $pills = Patient::all();
         return $pills;
     }
 

@@ -6,13 +6,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pill;
+use Illuminate\Support\Collection;
 
 class PillController extends Controller
 {
     // Get all Pills
-    public function get(): array
+    public function get(): Collection
     {
-        $pills = Pill::all()->toArray();
+        $pills = Pill::all();
         return $pills;
     }
 
