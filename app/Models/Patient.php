@@ -14,7 +14,7 @@ class Patient extends Model
         'country_code' => 'countryCode',
         'mobile_number' => 'mobileNumber'
     ];
-    
+
     protected $hidden = [
         'country_code', 'mobile_number', 'created_at', 'updated_at'
     ];

@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Helpers\PatientDataHelper;
 use App\Mail\PillReminder;
+use App\Models\PatientsPillsLog;
 use Illuminate\Support\Facades\Mail;
 
 class SendPillReminder extends Command
@@ -47,5 +48,7 @@ class SendPillReminder extends Command
             Mail::send(new PillReminder($patient, $schedule));
             // Whatsapp Channel
         }
+        // Insert records into log table.
+        PatientsPillsLog::insertAll($patients);
     }
 }
