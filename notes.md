@@ -16,6 +16,10 @@ Endpoint - {{URL}}/pills
 Endpoint - {{URL}}/patients/schedule/{schedule}
 Ex - {{URL}}/patients/schedule/morning
 
+## Commands
+Command to run background job to send pill reminder.
+`php artisan command:SendPillReminder --schedule=morning`
+
 # Pending Work
 1. Add more channels to remind - sms, WhatsApp etc. 
 2. Put these notifications into Queue
