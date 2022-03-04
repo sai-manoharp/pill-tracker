@@ -46,7 +46,6 @@ class SendPillReminder extends Command
             // Email channel
             Mail::send(new PillReminder($patient, $schedule));
             // Whatsapp Channel
-            
         }
     }
 }
