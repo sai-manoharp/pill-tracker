@@ -12,12 +12,16 @@ class CreatePatientsPillsLogTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   
+        /* 
+          TODO: Update this table to have a new date column with default current date. 
+          Combination of that date column and p_p_schedule_id should be the primary key.
+        */
         Schema::create('patients_pills_log', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('p_p_schedule_id');
             $table->foreign('p_p_schedule_id')->references('id')->on('patients_pills_schedule');
-            $table->enum('status', ['pending', 'postponed', 'taken']);
+            $table->enum('status', ['pending', 'postponed', 'taken'])->default('pending');
             $table->timestamp('taken_at')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();            
