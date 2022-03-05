@@ -20,11 +20,13 @@ class PillReminder extends Mailable
 
      protected $patientPillData;
      protected $schedule;
+     protected $uuid;
 
-    public function __construct($patientPillData, $schedule)
+    public function __construct($patientPillData, $schedule, $uuid)
     {
         $this->patientPillData = $patientPillData;
         $this->schedule = $schedule;
+        $this->uuid = $uuid;
     }
 
     /**
@@ -38,7 +40,8 @@ class PillReminder extends Mailable
             ->to('manoharsai566@gmail.com')
             ->with([
                     'patientPillData' => $this->patientPillData,
-                    'schedule' => $this->schedule
+                    'schedule' => $this->schedule,
+                    'url' => env('APP_URL') . '/api/pillsLog/' . $this->uuid
                 ]);
     }
 }

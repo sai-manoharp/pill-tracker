@@ -22,6 +22,7 @@ class CreatePatientsPillsLogTable extends Migration
             $table->unsignedBigInteger('p_p_schedule_id');
             $table->foreign('p_p_schedule_id')->references('id')->on('patients_pills_schedule');
             $table->enum('status', ['pending', 'postponed', 'taken'])->default('pending');
+            $table->string('patient_log_uuid', 50);
             $table->timestamp('taken_at')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();            

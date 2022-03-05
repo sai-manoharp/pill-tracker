@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class PatientsPillsLog extends Model
 {
@@ -37,19 +38,20 @@ class PatientsPillsLog extends Model
     }
 
     // Bulk inserts into log table.
-    public static function insertAll(array $patients): bool
+    public static function insertAll(array $patient): string
     {
         $dataToInsert = [];
-        foreach ($patients as $patient) {
-            $pills = $patient['pills'] ?? [];
-            foreach ($pills as $pill) {
-                if (isset($pill['schedule']) && is_array($pill['schedule'])) {
-                    $dataToInsert [] = [
-                        'p_p_schedule_id'  => $pill['schedule']['id'],
-                    ];
-                }
+        $uuid = Str::uuid();
+        $pills = $patient['pills'] ?? [];
+        foreach ($pills as $pill) {
+            if (isset($pill['schedule']) && is_array($pill['schedule'])) {
+                $dataToInsert [] = [
+                    'p_p_schedule_id'  => $pill['schedule']['id'],
+                    'patient_log_uuid' => $uuid
+                ];
             }
         }
-        return self::insert($dataToInsert);
+        self::insert($dataToInsert);
+        return $uuid;
     }
 }
