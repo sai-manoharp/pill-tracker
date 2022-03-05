@@ -10,6 +10,12 @@ class PatientsPillsLog extends Model
 {
     use HasFactory;
 
+    const status = [
+        'pending' => 'pending',
+        'postpone' => 'postponed',
+        'taken' => 'taken'
+    ];
+
     protected $table = 'patients_pills_log';
 
     protected $maps = [
@@ -35,6 +41,11 @@ class PatientsPillsLog extends Model
     public function getPatientPillScheduleAttribute()
     {
         $this->attributes['p_p_schedule_id'];
+    }
+
+    public static function getLogStatus(): array
+    {
+        return self::status;
     }
 
     // Bulk inserts into log table.
