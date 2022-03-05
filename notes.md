@@ -20,9 +20,21 @@ Ex - {{URL}}/patients/schedule/morning
 Command to run background job to send pill reminder.
 `php artisan command:SendPillReminder --schedule=morning`
 
-# Pending Work
-1. Add more channels to remind - sms, WhatsApp etc. 
-2. Put these notifications into Queue
-2. After sending these, add records into log database.
-2. Add link in the template - it should contain all the pills as URL params. 
-3. Based on the URL that user hits, we have to update the status on all pills log records
+# Pending features
+1. Postpone feature - retry sending notification after 'x' minutes. 
+2. Add more channels to remind - sms, WhatsApp etc. 
+
+
+# Technical improvements
+1. Add logging
+2. Add exceptions and handle them properly. 
+3. Queue the notifications, right now they are done synchronously. 
+4. Put these notifications into Queue.
+5. Get the error messages from language files. 
+6. Handle notifications properly - create some database structures to save the log and to retry during postpone - just use that communication log table, instead of querying all again. 
+7. Update pills log table to not contain duplicate entry of a scheduleId in day - create a date column which auto populates current day. use a composite primary key of schedule_id and that date column. 
+
+
+
+
+
