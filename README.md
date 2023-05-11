@@ -11,3 +11,6 @@ Head to [Notes](./notes.md) to know more about it.
 ## Laravel Boilerplate (Current: Laravel 8.*) ([Demo](https://demo.laravel-boilerplate.com))
 
 Find the actual documentation [here](https://github.com/rappasoft/laravel-boilerplate)
+
+## TODO
+Add more content about test cases. 
